@@ -10,4 +10,7 @@ public class EstudosSpringMongodbApplication {
 		SpringApplication.run(EstudosSpringMongodbApplication.class, args);
 	}
 
+
+
+
 }
