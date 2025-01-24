@@ -5,7 +5,9 @@ import com.example.estudos_spring_mongodb.dto.UserDTO;
 import com.example.estudos_spring_mongodb.repositories.UserRepository;
 import com.example.estudos_spring_mongodb.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,5 +34,10 @@ public class UserService {
 
     public User fromDTO(UserDTO userDTO){
         return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
+    }
+
+    public void delete(String id){
+        findById(id);
+        userRepository.deleteById(id);
     }
 }
