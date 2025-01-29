@@ -1,9 +1,13 @@
 package com.example.estudos_spring_mongodb.domain;
 
 import com.example.estudos_spring_mongodb.dto.AuthorDTO;
+import com.example.estudos_spring_mongodb.dto.CommentDTO;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "post")
@@ -13,6 +17,8 @@ public class Post {
     private String title;
     private String body;
     private AuthorDTO author;
+
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public Post(){
 
@@ -64,6 +70,14 @@ public class Post {
 
     public void setAuthor(AuthorDTO author) {
         this.author = author;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(CommentDTO comment) {
+        this.comments = comments;
     }
 
     @Override
