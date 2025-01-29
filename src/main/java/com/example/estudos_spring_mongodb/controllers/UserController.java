@@ -1,5 +1,6 @@
 package com.example.estudos_spring_mongodb.controllers;
 
+import com.example.estudos_spring_mongodb.domain.Post;
 import com.example.estudos_spring_mongodb.domain.User;
 import com.example.estudos_spring_mongodb.dto.UserDTO;
 import com.example.estudos_spring_mongodb.services.UserService;
@@ -33,6 +34,12 @@ public class UserController {
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         UserDTO userDTO = new UserDTO(userService.findById(id));
         return ResponseEntity.ok().body(userDTO);
+    }
+
+    @GetMapping(value ="/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 
     @PostMapping
